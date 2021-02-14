@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="3" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <h1>Парсинг интернет магазинов</h1>
+    <h4>по состоянию на {{ datetimenow }}</h4>
+</div>
+
+{#<p>Hello string: {{ hello_string }}</p>#}
+
+
+<div>
+    <form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Имя файла настроек</th>
+                <th scope="col">Сайт</th>
+                <th scope="col">Действие</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Давность</th>
+                <th scope="col">Комментарий</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for filename in params_from_files.keys() %}
+
+                <tr class="{{ params_from_files[filename]['row_class'] }}">
+
+                    <th scope="row">{{ filename }}</th>
+                    <td> {{ params_from_files[filename]['start_url'] }}</td>
+                    <td> {{ params_from_files[filename]['html_button_run'] | safe }} </td>
+                    <td> {{ params_from_files[filename]['status'] }}</td>
+                    <td class="{{ params_from_files[filename]['duration_class'] }}"> {{ params_from_files[filename]['duration_comment'] }}</td>
+                    <td class="{{ params_from_files[filename]['comment_class'] }}"> {{ params_from_files[filename]['comment'] }}</td>
+                </tr>
+            {% endfor %}
+            {#        <tr class="table-primary">#}
+            {#        <tr class="table-secondary">#}
+            {#        <tr class="table-success">#}
+            {#        <tr class="table-danger">#}
+            {#        <tr class="table-warning">#}
+            {#        <tr class="table-info">#}
+            {#        <tr class="table-light">#}
+            {#        <tr class="table-dark">#}
+            </tbody>
+        </table>
+    </form>
+
+</div>
+
+</body>
+</html>
